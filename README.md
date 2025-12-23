@@ -65,6 +65,50 @@ which has a self-healing storage format with better data protection.
 
 
 
+## Method-1: Start Using Docker (standalone):
+
+- Starts **one master, one volume server, one filer, and one S3 gateway**.
+- All components are in one container, ready to serve S3 API.
+- S3 endpoint: `http://localhost:8333`
+- Default credentials: `AWS_ACCESS_KEY_ID=admin` / `AWS_SECRET_ACCESS_KEY=key`
+- Fast, no setup required. Ideal for testing or development.
+
+
+```
+docker run --name seaweedfs -dit  -p 8333:8333 -p 9333:9333 -p 8080:8080 -p 8888:8888 chrislusf/seaweedfs server -s3
+```
+
+
+
+
+## Method-2: Start Using Single Binary (standalone): 
+
+- `-dir=` : directory where the volume and filer store data.
+- `-s3` : starts the S3 gateway automatically.
+- Single-node setup:
+	- 1 Master
+	- 1 Volume server
+	- 1 Filer
+	- 1 S3 Gateway
+
+
+```
+export AWS_ACCESS_KEY_ID=admin
+export AWS_SECRET_ACCESS_KEY=key
+```
+
+
+```
+weed server -dir=/home/idea/seaweedfs -s3
+```
+
+
+
+
+
+## Method-3: 
+
+
 ### Create Directories for SeaweedFS Data:
 
 
